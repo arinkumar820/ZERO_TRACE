@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="#f5f5f5">
+
+    <!-- Header -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="🛡️ Screenshot Protection Test"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="#2c3e50"
+        android:gravity="center"
+        android:layout_marginBottom="20dp" />
+
+    <!-- Status Display -->
+    <CardView xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="4dp">
+
+        <TextView
+            android:id="@+id/tv_protection_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Status will appear here"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:padding="16dp"
+            android:textColor="#27ae60"
+            android:gravity="center" />
+
+    </CardView>
+
+    <!-- Instructions -->
+    <CardView xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="4dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Instructions:"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="#34495e"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/tv_instructions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Instructions will appear here"
+                android:textSize="14sp"
+                android:textColor="#7f8c8d"
+                android:lineSpacingExtra="2dp" />
+
+        </LinearLayout>
+
+    </CardView>
+
+    <!-- Controls -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="20dp">
+
+        <Button
+            android:id="@+id/btn_toggle_protection"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:text="Enable Protection"
+            android:textSize="16sp"
+            android:backgroundTint="#3498db"
+            android:textColor="@android:color/white"
+            android:padding="16dp" />
+
+        <Button
+            android:id="@+id/btn_show_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:text="Show Protection Info"
+            android:textSize="16sp"
+            android:backgroundTint="#9b59b6"
+            android:textColor="@android:color/white"
+            android:padding="16dp" />
+
+    </LinearLayout>
+
+    <!-- Information Text -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="💡 How to test:\n\n1. When protection is ON, try taking a screenshot - it should appear completely black\n\n2. When protection is OFF, screenshots should work normally\n\n3. Screen recording is also blocked when protection is enabled\n\n4. This works on Android 5.0+ devices"
+        android:textSize="12sp"
+        android:textColor="#95a5a6"
+        android:lineSpacingExtra="2dp"
+        android:background="#ffffff"
+        android:padding="12dp" />
+
+</LinearLayout>

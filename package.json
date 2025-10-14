@@ -1,0 +1,24 @@
+{
+  "name": "secure-messaging-backend",
+  "version": "1.0.0",
+  "description": "A secure messaging backend with hierarchical chat access control",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["messaging", "express", "nodejs", "chat", "hierarchy"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "bcrypt": "^5.1.1",
+    "sqlite3": "^5.1.6",
+    "cors": "^2.8.5",
+    "helmet": "^7.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}

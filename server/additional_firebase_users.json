@@ -1,0 +1,42 @@
+{
+  "ArinKumar123456789012345678": {
+    "displayName": "Arin Kumar",
+    "displayText": "Arin Kumar", 
+    "email": "arin@example.com",
+    "lastSeen": 1728147200000,
+    "online": true,
+    "status": "online"
+  },
+  "PrachiSharma12345678901234": {
+    "displayName": "Prachi Sharma",
+    "displayText": "Prachi Sharma",
+    "email": "prachi@example.com", 
+    "lastSeen": 1728147200000,
+    "online": true,
+    "status": "online"
+  },
+  "JohnSmith567890123456789012": {
+    "displayName": "John Smith",
+    "displayText": "John Smith",
+    "email": "john.smith@example.com",
+    "lastSeen": 1728140000000,
+    "online": false,
+    "status": "offline"
+  },
+  "TestUser789012345678901234": {
+    "displayName": "Test User",
+    "displayText": "Test User", 
+    "email": "test@placeholder.com",
+    "lastSeen": 1728147000000,
+    "online": true,
+    "status": "online"
+  },
+  "DevUser901234567890123456": {
+    "displayName": "Developer",
+    "displayText": "Developer",
+    "email": "dev@example.com",
+    "lastSeen": 1728146000000,
+    "online": false,
+    "status": "offline"
+  }
+}

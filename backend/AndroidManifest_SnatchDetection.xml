@@ -1,0 +1,255 @@
+<!-- 
+    ANDROID MANIFEST ADDITIONS FOR SNATCH DETECTION
+    
+    Add these permissions and components to your AndroidManifest.xml file
+    to enable the snatch detection security features.
+    
+    IMPORTANT: Copy the relevant sections into your existing AndroidManifest.xml
+    DO NOT replace your entire manifest with this file.
+-->
+
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.bistochat">
+
+    <!-- =============================================== -->
+    <!-- REQUIRED PERMISSIONS FOR SNATCH DETECTION -->
+    <!-- =============================================== -->
+    
+    <!-- Hardware sensor access -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    
+    <!-- Required for background service notifications -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
+    
+    <!-- Battery optimization bypass (optional but recommended) -->
+    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
+    
+    <!-- =============================================== -->
+    <!-- HARDWARE REQUIREMENTS -->
+    <!-- =============================================== -->
+    
+    <!-- Accelerometer sensor (required) -->
+    <uses-feature
+        android:name="android.hardware.sensor.accelerometer"
+        android:required="true" />
+    
+    <!-- Gyroscope sensor (required) -->
+    <uses-feature
+        android:name="android.hardware.sensor.gyroscope"
+        android:required="true" />
+    
+    <!-- Vibrator (recommended but not required) -->
+    <uses-feature
+        android:name="android.hardware.vibrate"
+        android:required="false" />
+
+    <application
+        android:allowBackup="false"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme">
+
+        <!-- =============================================== -->
+        <!-- SNATCH DETECTION COMPONENTS -->
+        <!-- =============================================== -->
+
+        <!-- Main Snatch Detection Activity -->
+        <activity
+            android:name=".SnatchDetectionActivity"
+            android:label="Security Monitor"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:launchMode="singleTop"
+            android:excludeFromRecents="true"
+            android:taskAffinity=""
+            android:finishOnTaskLaunch="true">
+            
+            <!-- Intent filters for launching from other activities -->
+            <intent-filter>
+                <action android:name="com.example.bistochat.SNATCH_DETECTION" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            
+            <!-- Security incident handling -->
+            <intent-filter>
+                <action android:name="com.example.bistochat.SECURITY_INCIDENT" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <!-- Background Snatch Detection Service -->
+        <service
+            android:name=".SnatchDetectionService"
+            android:enabled="true"
+            android:exported="false"
+            android:foregroundServiceType="specialUse">
+            
+            <!-- Service metadata -->
+            <meta-data
+                android:name="android.app.FOREGROUND_SERVICE_TYPE"
+                android:value="specialUse" />
+            
+            <!-- Service description for special use -->
+            <meta-data
+                android:name="android.app.foreground_service.description"
+                android:value="@string/snatch_detection_service_description" />
+            
+            <!-- Intent filters for service control -->
+            <intent-filter>
+                <action android:name="com.example.bistochat.START_MONITORING" />
+            </intent-filter>
+            
+            <intent-filter>
+                <action android:name="com.example.bistochat.STOP_MONITORING" />
+            </intent-filter>
+        </service>
+
+        <!-- =============================================== -->
+        <!-- SECURITY BROADCAST RECEIVERS (OPTIONAL) -->
+        <!-- =============================================== -->
+
+        <!-- Boot receiver to restart monitoring after device restart -->
+        <receiver
+            android:name=".SnatchDetectionBootReceiver"
+            android:enabled="true"
+            android:exported="false">
+            
+            <intent-filter android:priority="1000">
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+                <action android:name="android.intent.action.PACKAGE_REPLACED" />
+                <data android:scheme="package" />
+            </intent-filter>
+        </receiver>
+
+        <!-- Screen state receiver for optimized monitoring -->
+        <receiver
+            android:name=".SnatchDetectionScreenReceiver"
+            android:enabled="true"
+            android:exported="false">
+            
+            <intent-filter>
+                <action android:name="android.intent.action.SCREEN_ON" />
+                <action android:name="android.intent.action.SCREEN_OFF" />
+                <action android:name="android.intent.action.USER_PRESENT" />
+            </intent-filter>
+        </receiver>
+
+        <!-- =============================================== -->
+        <!-- EXISTING APP ACTIVITIES -->
+        <!-- =============================================== -->
+
+        <!-- Your existing activities go here -->
+        <!-- Example: Main Activity -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:label="@string/app_name">
+            
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Example: Login Activity -->
+        <activity
+            android:name=".LoginActivity"
+            android:label="Login"
+            android:windowSoftInputMode="adjustResize" />
+
+        <!-- Example: Chat Activity -->
+        <activity
+            android:name=".ChatActivity"
+            android:label="Chat"
+            android:parentActivityName=".MainActivity" />
+
+    </application>
+
+</manifest>
+
+<!-- 
+    ===============================================
+    ADDITIONAL RESOURCES NEEDED
+    ===============================================
+    
+    Add these string resources to your strings.xml file:
+    
+    <resources>
+        <string name="snatch_detection_service_description">
+            Monitors device sensors to detect unauthorized access attempts and protect sensitive data
+        </string>
+        
+        <string name="security_notification_title">Security Active</string>
+        <string name="security_notification_text">Device protection monitoring</string>
+        
+        <string name="security_breach_title">Security Alert</string>
+        <string name="security_breach_text">Unauthorized access detected</string>
+    </resources>
+    
+    ===============================================
+    BATTERY OPTIMIZATION EXEMPTION (OPTIONAL)
+    ===============================================
+    
+    To ensure reliable background monitoring, you may want to request
+    battery optimization exemption. Add this to your main activity:
+    
+    private void requestBatteryOptimizationExemption() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            Intent intent = new Intent();
+            String packageName = getPackageName();
+            PowerManager pm = (PowerManager) getSystemService(POWER_SERVICE);
+            
+            if (!pm.isIgnoringBatteryOptimizations(packageName)) {
+                intent.setAction(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS);
+                intent.setData(Uri.parse("package:" + packageName));
+                startActivity(intent);
+            }
+        }
+    }
+    
+    ===============================================
+    INTEGRATION CHECKLIST
+    ===============================================
+    
+    1. ✓ Add permissions to AndroidManifest.xml
+    2. ✓ Add activities and services to AndroidManifest.xml  
+    3. ✓ Add string resources to strings.xml
+    4. ✓ Copy the Java files to your project
+    5. ✓ Update package name in all Java files
+    6. ✓ Add integration calls to your existing activities
+    7. ✓ Test on real device with accelerometer and gyroscope
+    8. ✓ Request battery optimization exemption (optional)
+    
+    TESTING:
+    - Use SnatchDetectionIntegration.testSnatchDetection() in debug builds
+    - Test actual snatch motions with the device
+    - Verify data clearing functionality works
+    - Test background service persistence
+-->
+
+<!--
+    ===============================================  
+    EXAMPLE INTEGRATION IN YOUR MAIN ACTIVITY
+    ===============================================
+    
+    Add this to your MainActivity.java:
+    
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        
+        // Enable snatch detection security
+        SnatchDetectionIntegration.enableFullProtection(this);
+        
+        // Optional: Configure sensitivity
+        SnatchDetectionIntegration.configureSensitivity(this, "medium");
+        
+        // Optional: Show security status
+        String status = SnatchDetectionIntegration.getSecurityStatus(this);
+        Log.i("Security", status);
+    }
+-->

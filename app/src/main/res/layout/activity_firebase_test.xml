@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:gravity="center">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Firebase Test Utility"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="32dp" />
+
+    <TextView
+        android:id="@+id/tv_status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ready to create sample users"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:padding="16dp"
+        android:background="@android:color/darker_gray"
+        android:textColor="@android:color/white"
+        android:layout_marginBottom="24dp" />
+
+    <Button
+        android:id="@+id/btn_create_users"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:text="Create Sample Users"
+        android:textSize="16sp"
+        android:layout_marginBottom="16dp" />
+
+    <Button
+        android:id="@+id/btn_clear_users"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:text="Clear Sample Users"
+        android:textSize="16sp"
+        android:backgroundTint="@android:color/holo_red_light" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="⚠️ This is for development/testing only!\n\nThis will create 10 sample users in Firebase that you can search for and start chats with."
+        android:textSize="12sp"
+        android:textColor="@android:color/darker_gray"
+        android:gravity="center"
+        android:layout_marginTop="32dp" />
+
+</LinearLayout>

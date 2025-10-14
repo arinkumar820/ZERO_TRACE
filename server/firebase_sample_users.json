@@ -1,0 +1,64 @@
+{
+  "users": {
+    "Cxgu4l7F1234567890123456788": {
+      "displayName": "Arin Kumar",
+      "email": "arin@example.com",
+      "phoneNumber": "+1-555-0101",
+      "bio": "Hey there! I love coding and technology. Always up for a chat about new frameworks!",
+      "status": "online",
+      "profileImageUrl": "",
+      "createdAt": 1696492800000,
+      "lastSeen": 1696492800000
+    },
+    "Prachi567890123456789012345": {
+      "displayName": "Prachi Sharma", 
+      "email": "prachi@example.com",
+      "phoneNumber": "+1-555-0102",
+      "bio": "Designer by day, gamer by night. Let's create something amazing together!",
+      "status": "online",
+      "profileImageUrl": "",
+      "createdAt": 1696492800000,
+      "lastSeen": 1696492800000
+    },
+    "John123456789012345678901234": {
+      "displayName": "John Smith",
+      "email": "john.smith@example.com", 
+      "phoneNumber": "+1-555-0103",
+      "bio": "Coffee enthusiast and software developer. Building the future, one line of code at a time.",
+      "status": "away",
+      "profileImageUrl": "",
+      "createdAt": 1696492800000,
+      "lastSeen": 1696492800000
+    },
+    "Sarah56789012345678901234567": {
+      "displayName": "Sarah Johnson",
+      "email": "sarah.j@example.com",
+      "phoneNumber": "+1-555-0104", 
+      "bio": "Digital marketing specialist. Love connecting people through great conversations!",
+      "status": "online",
+      "profileImageUrl": "",
+      "createdAt": 1696492800000,
+      "lastSeen": 1696492800000
+    },
+    "Mike789012345678901234567890": {
+      "displayName": "Mike Chen",
+      "email": "mike.chen@example.com",
+      "phoneNumber": "+1-555-0105",
+      "bio": "Full-stack developer and tech blogger. Always exploring new technologies.", 
+      "status": "offline",
+      "profileImageUrl": "",
+      "createdAt": 1696492800000,
+      "lastSeen": 1696492800000
+    },
+    "Emily90123456789012345678901": {
+      "displayName": "Emily Davis",
+      "email": "emily.davis@example.com",
+      "phoneNumber": "+1-555-0106",
+      "bio": "UI/UX designer with a passion for creating beautiful user experiences.",
+      "status": "online", 
+      "profileImageUrl": "",
+      "createdAt": 1696492800000,
+      "lastSeen": 1696492800000
+    }
+  }
+}

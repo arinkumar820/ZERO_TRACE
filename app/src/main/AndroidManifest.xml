@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.sameetasadullah.i180479_180531">
+
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    
+    <!-- Permissions for panic button data clearing functionality -->
+    <uses-permission android:name="android.permission.CLEAR_APP_CACHE" />
+    <uses-permission android:name="android.permission.DELETE_CACHE_FILES" />
+    <uses-permission android:name="android.permission.WRITE_INTERNAL_STORAGE" />
+    
+    <!-- Permission for panic button notifications -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    
+    <!-- SNATCH DETECTION SECURITY PERMISSIONS -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
+    
+    <!-- Hardware requirements for snatch detection -->
+    <uses-feature
+        android:name="android.hardware.sensor.accelerometer"
+        android:required="true" />
+    <uses-feature
+        android:name="android.hardware.sensor.gyroscope"
+        android:required="true" />
+
+    <application
+        android:name=".BistoChatApplication"
+        android:allowBackup="true"
+        android:usesCleartextTraffic="true"
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:localeConfig="@xml/locales_config"
+        android:theme="@style/Theme.I180479_180531">
+        <activity
+            android:name=".DatabaseTestActivity"
+            android:exported="true"
+            android:label="SQLite Database Test" />
+        <activity
+            android:name=".FirebaseTestActivity"
+            android:exported="false"
+            android:label="Firebase Test Utility" />
+        <activity
+            android:name=".createGroup"
+            android:exported="false" />
+        <activity
+            android:name=".inputCredentials"
+            android:exported="true"></activity>
+        <activity
+            android:name=".fragmentsContainer"
+            android:exported="true" />
+        <activity
+            android:name=".screen5"
+            android:exported="true" />
+        <activity
+            android:name=".screen11"
+            android:exported="true" />
+        <activity
+            android:name=".screen3"
+            android:exported="true" />
+        <activity
+            android:name=".screen8"
+            android:exported="true"></activity>
+        <activity
+            android:name=".screen2"
+            android:exported="true" />
+        <activity
+            android:name=".ChatActivity"
+            android:exported="false"
+            android:label="Chat"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".SearchContactsActivity"
+            android:exported="false"
+            android:label="Add New Contact"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".FirebaseSearchContactsActivity"
+            android:exported="false"
+            android:label="Search Contacts (Firebase)"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".LocalSearchContactsActivity"
+            android:exported="false"
+            android:label="Search Contacts (Local)"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".FirebaseDebugActivity"
+            android:exported="false"
+            android:label="Firebase Debug" />
+        <activity
+            android:name=".ServerTestActivity"
+            android:exported="false"
+            android:label="Server Test"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".WebSocketTestActivity"
+            android:exported="false"
+            android:label="WebSocket Test"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".ScreenshotProtectionTestActivity"
+            android:exported="false"
+            android:label="Screenshot Protection Test" />
+        <!-- PIN Authentication - Main Launcher Activity -->
+        <activity
+            android:name=".PinAuthenticationActivity"
+            android:exported="true"
+            android:label="ZeroTrace"
+            android:theme="@style/Theme.I180479_180531"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTask">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        
+        <activity
+            android:name=".LoginActivity"
+            android:exported="false"
+            android:label="Login" />
+        <activity
+            android:name=".RegistrationActivity"
+            android:exported="false"
+            android:label="Register" />
+        <activity
+            android:name=".VerificationActivity"
+            android:exported="false"
+            android:label="Verification" />
+        <activity
+            android:name=".DatabaseDebugActivity"
+            android:exported="false"
+            android:label="Database Debug" />
+        <activity
+            android:name=".screen1"
+            android:exported="true" />
+        
+        <!-- App Lock Activity -->
+        <activity
+            android:name=".AppLockActivity"
+            android:exported="false"
+            android:label="App Locked"
+            android:theme="@style/Theme.I180479_180531"
+            android:launchMode="singleTask" />
+        
+        <!-- Auto-Lock Broadcast Receiver -->
+        <receiver
+            android:name=".AutoLockReceiver"
+            android:exported="false" />
+        
+        <!-- SNATCH DETECTION SECURITY ACTIVITIES -->
+        <activity
+            android:name=".SnatchDetectionActivity"
+            android:label="Security Monitor"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:launchMode="singleTop"
+            android:excludeFromRecents="true"
+            android:taskAffinity=""
+            android:finishOnTaskLaunch="true" />
+        
+        <activity
+            android:name=".UltraSnatchTest"
+            android:label="Ultra Security Test"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:excludeFromRecents="true" />
+            
+        <activity
+            android:name=".SimpleSnatchDetection"
+            android:label="Simple Security Detection"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:excludeFromRecents="true" />
+            
+        <activity
+            android:name=".FallbackSnatchDetection"
+            android:label="Basic Motion Detection"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:excludeFromRecents="true" />
+        
+        <!-- Background Snatch Detection Service -->
+        <service
+            android:name=".SnatchDetectionService"
+            android:enabled="true"
+            android:exported="false"
+            android:foregroundServiceType="specialUse">
+            
+            <meta-data
+                android:name="android.app.FOREGROUND_SERVICE_TYPE"
+                android:value="specialUse" />
+        </service>
+        
+    </application>
+
+</manifest>

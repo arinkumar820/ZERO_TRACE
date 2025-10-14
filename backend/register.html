@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Messaging - Register</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .register-container {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 500px;
+        }
+        
+        .logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .logo h1 {
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 5px;
+        }
+        
+        .logo p {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 500;
+        }
+        
+        input[type="text"], input[type="password"], textarea, select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e1e5e9;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        
+        textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+        
+        .rank-info {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+        
+        .rank-option {
+            margin-bottom: 10px;
+            padding: 8px;
+            border-left: 4px solid #ddd;
+            padding-left: 12px;
+        }
+        
+        .rank-commander { border-color: #dc3545; }
+        .rank-captain { border-color: #fd7e14; }
+        .rank-troops { border-color: #28a745; }
+        
+        .register-btn {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        
+        .register-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .register-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .login-link {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        
+        .login-link a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+        
+        .error {
+            background: #fee;
+            color: #c33;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            display: none;
+        }
+        
+        .success {
+            background: #efe;
+            color: #3c3;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            display: none;
+        }
+        
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 10px;
+            color: #667eea;
+        }
+    </style>
+</head>
+<body>
+    <div class="register-container">
+        <div class="logo">
+            <h1>🛡️ Secure Messaging</h1>
+            <p>Create your account to join the secure messaging system</p>
+        </div>
+        
+        <div class="error" id="errorMsg"></div>
+        <div class="success" id="successMsg"></div>
+        <div class="loading" id="loadingMsg">🔄 Creating account...</div>
+        
+        <form id="registerForm">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required placeholder="Choose a unique username">
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required placeholder="Create a secure password">
+            </div>
+            
+            <div class="form-group">
+                <label for="bio">Bio (Optional):</label>
+                <textarea id="bio" name="bio" placeholder="Tell us about yourself..."></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="rank">Select Your Rank:</label>
+                <select id="rank" name="rank" required>
+                    <option value="">Choose your rank...</option>
+                    <option value="1">Commander - Full Access to All Users</option>
+                    <option value="2">Captain - Full Access to All Users</option>
+                    <option value="3">Troops - Limited Access (Can't message Commanders)</option>
+                </select>
+            </div>
+            
+            <div class="rank-info">
+                <h4>📋 Rank Communication Rules:</h4>
+                <div class="rank-option rank-commander">
+                    <strong>🏆 Commander (Level 1):</strong> Can communicate with EVERYONE
+                </div>
+                <div class="rank-option rank-captain">
+                    <strong>👨‍✈️ Captain (Level 2):</strong> Can communicate with EVERYONE
+                </div>
+                <div class="rank-option rank-troops">
+                    <strong>🎖️ Troops (Level 3):</strong> Can communicate with Troops + Captains ONLY
+                </div>
+            </div>
+            
+            <button type="submit" class="register-btn" id="registerBtn">
+                ✅ Create Account
+            </button>
+        </form>
+        
+        <div class="login-link">
+            <p>Already have an account? <a href="login.html">Login here</a></p>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = `http://${window.location.hostname}:3000`;
+        
+        document.getElementById('registerForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            await registerUser();
+        });
+        
+        // Update rank info when selection changes
+        document.getElementById('rank').addEventListener('change', function() {
+            const selectedRank = this.value;
+            const rankOptions = document.querySelectorAll('.rank-option');
+            
+            rankOptions.forEach(option => {
+                option.style.opacity = '0.5';
+            });
+            
+            if (selectedRank === '1') {
+                document.querySelector('.rank-commander').style.opacity = '1';
+            } else if (selectedRank === '2') {
+                document.querySelector('.rank-captain').style.opacity = '1';
+            } else if (selectedRank === '3') {
+                document.querySelector('.rank-troops').style.opacity = '1';
+            }
+        });
+        
+        async function registerUser() {
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value;
+            const bio = document.getElementById('bio').value.trim();
+            const rank_level = parseInt(document.getElementById('rank').value);
+            
+            // Validation
+            if (!username || !password || !rank_level) {
+                showError('Please fill in all required fields');
+                return;
+            }
+            
+            if (username.length < 3) {
+                showError('Username must be at least 3 characters long');
+                return;
+            }
+            
+            if (password.length < 6) {
+                showError('Password must be at least 6 characters long');
+                return;
+            }
+            
+            showLoading(true);
+            hideError();
+            hideSuccess();
+            
+            try {
+                const userData = {
+                    username: username,
+                    password: password,
+                    rank_level: rank_level,
+                    bio: bio || `New ${getRankName(rank_level)} member`
+                };
+                
+                const response = await fetch(`${API_BASE}/api/users/register`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(userData)
+                });
+                
+                const result = await response.json();
+                
+                if (response.ok) {
+                    showSuccess(`Account created successfully! Welcome, ${result.user.username}!`);
+                    
+                    // Clear form
+                    document.getElementById('registerForm').reset();
+                    
+                    // Redirect to login after 3 seconds
+                    setTimeout(() => {
+                        window.location.href = 'login.html';
+                    }, 3000);
+                    
+                } else {
+                    showError(result.error || 'Registration failed');
+                }
+                
+            } catch (error) {
+                showError('Network error: ' + error.message);
+            } finally {
+                showLoading(false);
+            }
+        }
+        
+        function getRankName(level) {
+            switch(level) {
+                case 1: return 'Commander';
+                case 2: return 'Captain';
+                case 3: return 'Troops';
+                default: return 'Member';
+            }
+        }
+        
+        function showError(message) {
+            const errorDiv = document.getElementById('errorMsg');
+            errorDiv.textContent = message;
+            errorDiv.style.display = 'block';
+        }
+        
+        function hideError() {
+            document.getElementById('errorMsg').style.display = 'none';
+        }
+        
+        function showSuccess(message) {
+            const successDiv = document.getElementById('successMsg');
+            successDiv.textContent = message;
+            successDiv.style.display = 'block';
+        }
+        
+        function hideSuccess() {
+            document.getElementById('successMsg').style.display = 'none';
+        }
+        
+        function showLoading(show) {
+            document.getElementById('loadingMsg').style.display = show ? 'block' : 'none';
+            document.getElementById('registerBtn').disabled = show;
+        }
+    </script>
+</body>
+</html>

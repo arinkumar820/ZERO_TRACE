@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1072303706921",
+    "project_id": "bisto-chat-3b33a",
+    "storage_bucket": "bisto-chat-3b33a.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1072303706921:android:1260e1a395fc90be791d38",
+        "android_client_info": {
+          "package_name": "com.sameetasadullah.i180479_180531"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBm5OHC1fFzqxpgyW-rsGWXOEP9DGBvWb4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

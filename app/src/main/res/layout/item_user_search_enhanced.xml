@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="2dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:gravity="center_vertical">
+
+        <!-- Profile Image with Online Indicator -->
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/iv_profile"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/ic_launcher_background"
+                app:civ_border_width="2dp"
+                app:civ_border_color="@android:color/white" />
+
+            <!-- Online Indicator -->
+            <View
+                android:id="@+id/v_online_indicator"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_alignEnd="@id/iv_profile"
+                android:layout_alignBottom="@id/iv_profile"
+                android:layout_marginEnd="4dp"
+                android:layout_marginBottom="4dp"
+                android:background="@drawable/online_indicator"
+                android:visibility="gone" />
+
+        </RelativeLayout>
+
+        <!-- User Information -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="16dp"
+            android:orientation="vertical">
+
+            <!-- Name -->
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="User Name"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/black" />
+
+            <!-- Email -->
+            <TextView
+                android:id="@+id/tv_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="user@email.com"
+                android:textSize="14sp"
+                android:textColor="@android:color/darker_gray" />
+
+            <!-- Status/Bio -->
+            <TextView
+                android:id="@+id/tv_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Hey there! I'm using Bisto Chat."
+                android:textSize="12sp"
+                android:textColor="@android:color/darker_gray"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:visibility="visible" />
+
+        </LinearLayout>
+
+        <!-- Action Buttons -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <!-- Chat Button -->
+            <TextView
+                android:id="@+id/btn_chat"
+                android:layout_width="80dp"
+                android:layout_height="36dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/button_primary"
+                android:text="Chat"
+                android:textColor="@android:color/white"
+                android:textSize="12sp"
+                android:gravity="center"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground" />
+
+            <!-- Add Contact Button -->
+            <TextView
+                android:id="@+id/btn_add"
+                android:layout_width="80dp"
+                android:layout_height="36dp"
+                android:background="@drawable/button_secondary"
+                android:text="Add"
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                android:gravity="center"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

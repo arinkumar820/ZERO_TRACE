@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1C1B1B"
+    tools:context=".ChatActivity">
+
+    <!-- Status Bar -->
+    <TextView
+        android:id="@+id/connection_status_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp"
+        android:text="Connecting..."
+        android:textColor="@android:color/holo_orange_dark"
+        android:textSize="12sp" />
+
+    <!-- Messages RecyclerView -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/chat_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/timer_status_text"
+        android:layout_below="@+id/connection_status_text"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="4dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp" />
+
+    <!-- Timer Status -->
+    <TextView
+        android:id="@+id/timer_status_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/message_input_layout"
+        android:background="#1A1A1A"
+        android:gravity="center"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        android:text="⏰ Messages disappear after 1 minute"
+        android:textColor="#CCCCCC"
+        android:textSize="11sp"
+        android:visibility="visible" />
+
+    <!-- Message Input Layout -->
+    <LinearLayout
+        android:id="@+id/message_input_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#2C2C2C"
+        android:orientation="horizontal"
+        android:paddingStart="16dp"
+        android:paddingTop="12dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="12dp">
+
+        <!-- Timer Button -->
+        <ImageButton
+            android:id="@+id/timer_button"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/timer_button_background"
+            android:contentDescription="Set disappearing timer"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_timer" />
+
+        <!-- Panic Button (replaces camera functionality) -->
+        <ImageButton
+            android:id="@+id/panic_button"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/button_secondary"
+            android:contentDescription="Emergency panic button - clears all data"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_panic_button" />
+
+        <EditText
+            android:id="@+id/message_edit_text"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:background="@drawable/message_input_background"
+            android:hint="Type a message..."
+            android:imeOptions="actionSend"
+            android:inputType="textMultiLine"
+            android:maxLines="3"
+            android:paddingStart="16dp"
+            android:paddingTop="12dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="12dp"
+            android:textColor="@android:color/white"
+            android:textColorHint="#888888"
+            android:textSize="16sp" />
+
+        <ImageButton
+            android:id="@+id/send_button"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/send_button_background"
+            android:contentDescription="Send message"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_send" />
+
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Messaging - Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f7fa;
+            min-height: 100vh;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .user-avatar {
+            width: 50px;
+            height: 50px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+        
+        .rank-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: 600;
+            color: white;
+            background: rgba(255,255,255,0.2);
+        }
+        
+        .logout-btn {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        
+        .logout-btn:hover {
+            background: rgba(255,255,255,0.3);
+        }
+        
+        .dashboard-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+        
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card h3 {
+            color: #333;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .chat-users {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        
+        .user-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            background: #f8f9fa;
+            transition: background 0.2s;
+        }
+        
+        .user-item:hover {
+            background: #e9ecef;
+        }
+        
+        .user-details {
+            flex: 1;
+        }
+        
+        .user-name {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 4px;
+        }
+        
+        .user-bio {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 4px;
+        }
+        
+        .user-rank-small {
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 10px;
+            font-size: 10px;
+            font-weight: 600;
+            color: white;
+        }
+        
+        .rank-commander { background: #dc3545; }
+        .rank-captain { background: #fd7e14; }
+        .rank-troops { background: #28a745; }
+        
+        .message-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        
+        .message-btn:hover {
+            background: #5a6fd8;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .stat-number {
+            font-size: 36px;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+        
+        .error {
+            background: #fee;
+            color: #c33;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <div class="user-info">
+                <div class="user-avatar" id="userAvatar">👤</div>
+                <div>
+                    <h2>Welcome, <span id="userName">Loading...</span></h2>
+                    <p>
+                        <span class="rank-badge" id="userRank">Loading...</span>
+                        <span id="userBio" style="margin-left: 10px; opacity: 0.8;">Loading...</span>
+                    </p>
+                </div>
+            </div>
+            <button class="logout-btn" onclick="logout()">🚪 Logout</button>
+        </div>
+    </div>
+    
+    <div class="dashboard-content">
+        <div class="error" id="errorMsg" style="display: none;"></div>
+        
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number" id="totalUsers">-</div>
+                <div class="stat-label">Available Contacts</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="userRankLevel">-</div>
+                <div class="stat-label">Your Rank Level</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="accessLevel">-</div>
+                <div class="stat-label">Access Type</div>
+            </div>
+        </div>
+        
+        <div class="dashboard-grid">
+            <div class="card">
+                <h3>💬 Available Contacts</h3>
+                <div class="loading" id="contactsLoading">Loading your contacts...</div>
+                <div class="chat-users" id="chatUsers" style="display: none;"></div>
+            </div>
+            
+            <div class="card">
+                <h3>🏆 Your Profile</h3>
+                <div id="profileInfo">
+                    <div style="margin-bottom: 15px;">
+                        <strong>Username:</strong> <span id="profileUsername">-</span>
+                    </div>
+                    <div style="margin-bottom: 15px;">
+                        <strong>Rank:</strong> <span id="profileRank">-</span>
+                    </div>
+                    <div style="margin-bottom: 15px;">
+                        <strong>Bio:</strong>
+                        <div style="background: #f8f9fa; padding: 10px; border-radius: 5px; margin-top: 5px;">
+                            <span id="profileBio">-</span>
+                        </div>
+                    </div>
+                    <div>
+                        <strong>Communication Rules:</strong>
+                        <div id="communicationRules" style="background: #f8f9fa; padding: 10px; border-radius: 5px; margin-top: 5px; font-size: 14px;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = `http://${window.location.hostname}:3000`;
+        let currentUser = null;
+        
+        window.onload = async function() {
+            // Check if user is logged in
+            const savedUser = localStorage.getItem('currentUser');
+            const urlParams = new URLSearchParams(window.location.search);
+            const urlUser = urlParams.get('user');
+            
+            if (urlUser) {
+                currentUser = JSON.parse(decodeURIComponent(urlUser));
+                localStorage.setItem('currentUser', JSON.stringify(currentUser));
+            } else if (savedUser) {
+                currentUser = JSON.parse(savedUser);
+            } else {
+                // Redirect to login if no user info
+                window.location.href = 'login.html';
+                return;
+            }
+            
+            await loadDashboard();
+        };
+        
+        async function loadDashboard() {
+            if (!currentUser) return;
+            
+            // Update header
+            document.getElementById('userName').textContent = currentUser.username;
+            document.getElementById('userRank').textContent = currentUser.rank_name;
+            document.getElementById('userBio').textContent = currentUser.bio || 'No bio provided';
+            
+            // Set avatar emoji based on rank
+            const avatarEmojis = {
+                'Commander': '🏆',
+                'Captain': '👨‍✈️',
+                'Troops': '🎖️'
+            };
+            document.getElementById('userAvatar').textContent = avatarEmojis[currentUser.rank_name] || '👤';
+            
+            // Update profile section
+            document.getElementById('profileUsername').textContent = currentUser.username;
+            document.getElementById('profileRank').textContent = `${currentUser.rank_name} (Level ${currentUser.rank_level})`;
+            document.getElementById('profileBio').textContent = currentUser.bio || 'No bio provided';
+            
+            // Set communication rules
+            const rules = {
+                1: 'As a Commander, you can communicate with EVERYONE (Commanders, Captains, and Troops)',
+                2: 'As a Captain, you can communicate with EVERYONE (Commanders, Captains, and Troops)',
+                3: 'As Troops, you can communicate with Troops and Captains ONLY (Commanders are restricted)'
+            };
+            document.getElementById('communicationRules').textContent = rules[currentUser.rank_level];
+            
+            // Update stats
+            document.getElementById('userRankLevel').textContent = currentUser.rank_level;
+            
+            const accessType = currentUser.rank_level <= 2 ? 'Full' : 'Limited';
+            document.getElementById('accessLevel').textContent = accessType;
+            
+            // Load contacts
+            await loadContacts();
+        }
+        
+        async function loadContacts() {
+            try {
+                const response = await fetch(`${API_BASE}/api/users/${currentUser.id}/permissible-chats`);
+                
+                if (!response.ok) {
+                    throw new Error('Failed to load contacts');
+                }
+                
+                const data = await response.json();
+                
+                document.getElementById('contactsLoading').style.display = 'none';
+                document.getElementById('chatUsers').style.display = 'block';
+                
+                // Update total users stat
+                document.getElementById('totalUsers').textContent = data.total_permissible_users;
+                
+                // Display contacts
+                const chatUsersDiv = document.getElementById('chatUsers');
+                chatUsersDiv.innerHTML = '';
+                
+                if (data.permissible_chats.length === 0) {
+                    chatUsersDiv.innerHTML = '<p style="text-align: center; color: #666; padding: 20px;">No contacts available</p>';
+                    return;
+                }
+                
+                data.permissible_chats.forEach(user => {
+                    const userDiv = document.createElement('div');
+                    userDiv.className = 'user-item';
+                    
+                    userDiv.innerHTML = `
+                        <div class="user-details">
+                            <div class="user-name">${user.username}</div>
+                            <div class="user-bio">${user.bio || 'No bio available'}</div>
+                            <span class="user-rank-small rank-${user.rank_name.toLowerCase()}">${user.rank_name}</span>
+                        </div>
+                        <button class="message-btn" onclick="startChat('${user.username}', ${user.id})">Message</button>
+                    `;
+                    
+                    chatUsersDiv.appendChild(userDiv);
+                });
+                
+            } catch (error) {
+                showError('Failed to load contacts: ' + error.message);
+            }
+        }
+        
+        function startChat(username, userId) {
+            alert(`Starting chat with ${username}...\\n\\nThis would typically open a chat interface or redirect to a messaging page.\\n\\nUser ID: ${userId}`);
+            // Here you would typically redirect to a chat interface
+            // window.location.href = `chat.html?userId=${userId}&username=${encodeURIComponent(username)}`;
+        }
+        
+        function logout() {
+            localStorage.removeItem('currentUser');
+            window.location.href = 'login.html';
+        }
+        
+        function showError(message) {
+            const errorDiv = document.getElementById('errorMsg');
+            errorDiv.textContent = message;
+            errorDiv.style.display = 'block';
+        }
+    </script>
+</body>
+</html>

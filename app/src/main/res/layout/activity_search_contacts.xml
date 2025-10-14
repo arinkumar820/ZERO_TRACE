@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1C1B1B"
+    tools:context=".SearchContactsActivity">
+
+    <!-- Top Bar -->
+    <RelativeLayout
+        android:id="@+id/rl_top_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#2D2D2D"
+        android:padding="16dp">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_launcher_background"
+            android:contentDescription="Back"
+            android:background="?android:attr/selectableItemBackgroundBorderless" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="Add New Contact"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+    <!-- Search Bar -->
+    <RelativeLayout
+        android:id="@+id/rl_search_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rl_top_bar"
+        android:layout_margin="16dp"
+        android:background="@drawable/rectangle_curved_screen6"
+        android:backgroundTint="#2D2D2D"
+        android:padding="12dp">
+
+        <ImageView
+            android:id="@+id/iv_search_icon"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="12dp"
+            android:src="@drawable/ic_launcher_background"
+            android:contentDescription="Search Icon"
+            android:backgroundTint="#AAAAAA" />
+
+        <EditText
+            android:id="@+id/et_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/iv_search_icon"
+            android:background="@android:color/transparent"
+            android:hint="Search by email or name..."
+            android:textColorHint="#AAAAAA"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:inputType="textEmailAddress" />
+
+        <ImageView
+            android:id="@+id/iv_clear_search"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_launcher_background"
+            android:contentDescription="Clear Search"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:backgroundTint="#AAAAAA"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+
+    <!-- Search Results -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_search_results"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/rl_search_bar"
+        android:layout_marginTop="8dp"
+        android:clipToPadding="false"
+        android:paddingBottom="16dp" />
+
+    <!-- Empty State -->
+    <LinearLayout
+        android:id="@+id/ll_empty_state"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <ImageView
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_marginBottom="16dp"
+            android:src="@drawable/ic_launcher_background"
+            android:backgroundTint="#666666"
+            android:contentDescription="No Results" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="Find New Contacts"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Search for users by their email address\nto start chatting with them"
+            android:textColor="#AAAAAA"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+    <!-- Loading Indicator -->
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
+
+</RelativeLayout>

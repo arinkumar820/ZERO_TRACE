@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1C1B1B">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Title -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Server Connection Test"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginBottom="24dp" />
+
+        <!-- Connection Status -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Status"
+            android:textColor="#AAAAAA"
+            android:textSize="14sp"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:id="@+id/tv_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ready to test..."
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:background="@drawable/rectangle_curved_screen6"
+            android:backgroundTint="#2D2D2D"
+            android:padding="16dp"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Response Details -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Response"
+            android:textColor="#AAAAAA"
+            android:textSize="14sp"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:id="@+id/tv_response"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Click a button to test server connectivity..."
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"
+            android:background="@drawable/rectangle_curved_screen6"
+            android:backgroundTint="#2D2D2D"
+            android:padding="16dp"
+            android:layout_marginBottom="24dp"
+            android:fontFamily="monospace" />
+
+        <!-- Test Buttons -->
+        <Button
+            android:id="@+id/btn_test_connection"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Test Connection"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/rectangle_curved_screen6"
+            android:backgroundTint="#077CE9"
+            android:layout_marginBottom="12dp"
+            android:padding="16dp"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btn_test_stats"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Get Server Stats"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/rectangle_curved_screen6"
+            android:backgroundTint="#4CAF50"
+            android:layout_marginBottom="12dp"
+            android:padding="16dp"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btn_reset_db"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="⚠️ Reset Database (Dev Only)"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/rectangle_curved_screen6"
+            android:backgroundTint="#F44336"
+            android:layout_marginBottom="24dp"
+            android:padding="16dp"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <!-- Instructions -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Setup Instructions:"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="1. Navigate to the server folder in your project\n2. Run start_server.bat to start the Python server\n3. Make sure Python is installed with Flask\n4. Server runs on http://localhost:8080\n5. Use 'Test Connection' to verify connectivity"
+            android:textColor="#AAAAAA"
+            android:textSize="14sp"
+            android:lineSpacingMultiplier="1.5"
+            android:background="@drawable/rectangle_curved_screen6"
+            android:backgroundTint="#2D2D2D"
+            android:padding="16dp" />
+
+    </LinearLayout>
+
+</ScrollView>
