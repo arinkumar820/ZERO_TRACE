@@ -1,10 +1,10 @@
-# 📱 Bisto Chat - Complete Android Chat Application
+# 📱 Zero Trace - Complete Android Chat Application
 
 > **Advanced Android Chat Application with Firebase Authentication, Real-time Messaging, Disappearing Messages, End-to-End Encryption, and Multiple Backend Options**
 
 ## 🎯 Project Overview
 
-Bisto Chat is a feature-rich Android chat application built with Java that combines modern messaging capabilities with enterprise-level security. The application supports multiple backend configurations and provides a WhatsApp-like user experience with advanced features.
+Zero Trace is a feature-rich Android chat application built with Java that combines modern messaging capabilities with enterprise-level security. The application supports multiple backend configurations and provides a WhatsApp-like user experience with advanced features.
 
 ### 🌟 Key Highlights
 - **Hybrid Backend System**: Firebase Auth + MySQL Database + Python Flask API
