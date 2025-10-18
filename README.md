@@ -338,7 +338,7 @@ python check_sqlite_simple.py
 #### Manual Testing Steps:
 
 1. **Launch App**
-   - Open Bisto Chat
+   - Open Zero Trace
    - Should see login/register screen
 
 2. **User Registration**
